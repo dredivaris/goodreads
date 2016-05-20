@@ -48,7 +48,7 @@ class GoodreadsUser():
     def list_groups(self, page=1):
         """List groups for the user. If there are more than 30 groups, get them
         page by page."""
-        resp = self._client.request("group/list/%s.xml" % self.gid, {'page':page})
+        resp = self._client.request("group/list/%s.xml" % self.gid, {'page': page})
         return resp['groups']['list']['group']
 
     def owned_books(self, page=1):
@@ -76,3 +76,20 @@ class GoodreadsUser():
                                     {'user_id': self.gid, 'page': page})
         return resp['shelves']['user_shelf']
 
+    def shelf(self, shelf_name, sort=None, order=None):
+        """Get shelf contents
+        :param shelf_name: name of the shelf (read, currently-reading, etc)
+        :param sort: field to sort on.  Available fields include: title, author, cover, rating,
+            year_pub, date_pub, date_pub_edition, date_started, date_read, date_updated, date_added,
+            recommender, avg_rating, num_ratings, review, read_count, votes, random, comments,
+            notes, isbn, isbn13, asin, num_pages, format, position, shelves, owned, date_purchased,
+            purchase_location, condition
+        :param order: ascending or descending (a, d) (optional)
+        """
+        payload = {'key': self._client.client_key, 'v': 2, 'shelf': shelf_name}
+        if sort and order:
+            payload['sort'] = sort
+            payload['order'] = order
+
+        resp = self._client.request("/review/list/%s" % self.gid, payload)
+        return resp['reviews']['review']

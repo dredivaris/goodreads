@@ -57,13 +57,13 @@ def client_test():
     # list events nearby
     events = client.list_events("21250")
     ok_(all(isinstance(event, GoodreadsEvent) for event in events))
-    print events[0].title
+    print(events[0].title)
 
     # list recent reviews
     reviews = client.recent_reviews()
     ok_(all(isinstance(review, GoodreadsReview) for review in reviews))
-    print reviews[0]
+    print(reviews[0])
 
     # get a review
     review = client.review("1212820989")
-    print review.body
+    print(review.body)

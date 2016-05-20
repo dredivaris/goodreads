@@ -1,6 +1,6 @@
 """Goodreads book class"""
 
-import author
+from . import author
 
 class GoodreadsBook:
     def __init__(self, book_dict, client):

@@ -1,14 +1,14 @@
 import webbrowser
-from session import GoodreadsSession
-from user import GoodreadsUser
-from book import GoodreadsBook
-from author import GoodreadsAuthor
-from request import GoodreadsRequest
-from comment import GoodreadsComment
-from event import GoodreadsEvent
-from group import GoodreadsGroup
-from owned_book import GoodreadsOwnedBook
-from review import GoodreadsReview
+from .session import GoodreadsSession
+from .user import GoodreadsUser
+from .book import GoodreadsBook
+from .author import GoodreadsAuthor
+from .request import GoodreadsRequest
+from .comment import GoodreadsComment
+from .event import GoodreadsEvent
+from .group import GoodreadsGroup
+from .owned_book import GoodreadsOwnedBook
+from .review import GoodreadsReview
 import collections
 
 class GoodreadsClientException(Exception):
@@ -39,7 +39,7 @@ class GoodreadsClient():
         else:
             url = self.session.oauth_init()
             webbrowser.open(url)
-            while raw_input("Have you authorized me? (y/n)") != 'y':
+            while input("Have you authorized me? (y/n)") != 'y':
                 pass
             self.session.oauth_finalize()
 

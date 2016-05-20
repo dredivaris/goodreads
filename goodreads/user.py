@@ -1,8 +1,8 @@
-import book
-import request
-import group
-import owned_book
-import review
+from . import book
+from . import request
+from . import group
+from . import owned_book
+from . import review
 
 class GoodreadsUser():
     def __init__(self, user_dict, client):

@@ -1,5 +1,3 @@
-from . import user
-
 class GoodreadsAuthor:
     def __init__(self, author_dict, client):
         self._author_dict = author_dict
@@ -88,6 +86,8 @@ class GoodreadsAuthor:
         """Goodreads user profile of the author"""
         goodreads_user = None
         if 'user' in self._author_dict:
+            # to correct circular import
+            from . import user
             goodreads_user = user.GoodreadsUser(
                 self._author_dict['user']['id']['#text'], self._client)
         return goodreads_user

@@ -1,4 +1,3 @@
-from . import book
 from . import user
 
 class GoodreadsAuthor:
@@ -29,6 +28,9 @@ class GoodreadsAuthor:
         """Books of the author"""
         # Goodreads API returns a list if there are more than one books, otherwise,
         # just the OrderedDict.
+
+        # to correct circular import
+        from . import book
         if type(self._author_dict['books']['book']) == list:
             return [book.GoodreadsBook(book_dict, self._client)
                     for book_dict in self._author_dict['books']['book']]

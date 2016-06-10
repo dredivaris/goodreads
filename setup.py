@@ -7,7 +7,7 @@ setup(
     author='Sefa Kilic',
     author_email='sefakilic@gmail.com',
     url='https://github.com/sefakilic/goodreads/',
-    version='0.2.4',
+    version='0.2.5',
     install_requires=['nose', 'xmltodict', 'requests', 'rauth'],
     packages=['goodreads'],
     scripts=[],

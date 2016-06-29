@@ -76,7 +76,7 @@ class GoodreadsUser():
                                     {'user_id': self.gid, 'page': page})
         return resp['shelves']['user_shelf']
 
-    def shelf(self, shelf_name, sort=None, order=None):
+    def shelf(self, shelf_name, sort=None, order=None, page=None, per_page=None):
         """Get shelf contents
         :param shelf_name: name of the shelf (read, currently-reading, etc)
         :param sort: field to sort on.  Available fields include: title, author, cover, rating,
@@ -85,11 +85,17 @@ class GoodreadsUser():
             notes, isbn, isbn13, asin, num_pages, format, position, shelves, owned, date_purchased,
             purchase_location, condition
         :param order: ascending or descending (a, d) (optional)
+        :param page: page to return if a multi page is necessary (optional)
+        :param per_page: number of entries per page (optional)
         """
         payload = {'key': self._client.client_key, 'v': 2, 'shelf': shelf_name}
         if sort and order:
             payload['sort'] = sort
             payload['order'] = order
+            if page:
+                payload['page'] = page
+            if per_page:
+                payload['per_page'] = per_page
 
         resp = self._client.request("/review/list/%s" % self.gid, payload)
         return resp['reviews']['review']

@@ -92,10 +92,10 @@ class GoodreadsUser():
         if sort and order:
             payload['sort'] = sort
             payload['order'] = order
-            if page:
-                payload['page'] = page
-            if per_page:
-                payload['per_page'] = per_page
+        if page:
+            payload['page'] = page
+        if per_page:
+            payload['per_page'] = per_page
 
         resp = self._client.request("/review/list/%s" % self.gid, payload)
         return resp['reviews']['review']
